@@ -24,7 +24,9 @@ public class EmprestimoService {
 
     // Padrão Facade: Este método simplifica a obtenção de um empréstimo por ID
     public EmprestimoDTO findById(Long id) {
-        return convertToDTO(emprestimoRepository.findById(id).orElse(null));
+        return emprestimoRepository.findById(id)
+                .map(this::convertToDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Empréstimo não encontrado"));
     }
 
     // Princípio SOLID: Single Responsibility
@@ -41,12 +43,29 @@ public class EmprestimoService {
     }
 
     private EmprestimoDTO convertToDTO(Emprestimo emprestimo) {
-        // Implemente a lógica de conversão aqui
-        return new EmprestimoDTO();
+        // Lógica de conversão de Emprestimo para EmprestimoDTO
+        if (emprestimo == null) return null;
+        return new EmprestimoDTO(
+                emprestimo.getId(),
+                emprestimo.getValor(),
+                emprestimo.getNumeroParcelas(),
+                emprestimo.getStatusPagamento(),
+                emprestimo.getDataCriacao(),
+                emprestimo.getPessoa().getId()  // Supondo que Emprestimo tem um campo Pessoa
+        );
     }
 
     private Emprestimo convertToEntity(EmprestimoDTO emprestimoDTO) {
-        // Implemente a lógica de conversão aqui
-        return new Emprestimo();
+        // Lógica de conversão de EmprestimoDTO para Emprestimo
+        if (emprestimoDTO == null) return null;
+        Emprestimo emprestimo = new Emprestimo(
+                emprestimoDTO.getId(),
+                emprestimoDTO.getValor(),
+                emprestimoDTO.getNumeroParcelas(),
+                emprestimoDTO.getStatusPagamento(),
+                emprestimoDTO.getDataCriacao()
+        );
+        emprestimo.setPessoa(new Pessoa(emprestimoDTO.getPessoaId()));  // Supondo que Emprestimo tem um campo Pessoa
+        return emprestimo;
     }
 }
