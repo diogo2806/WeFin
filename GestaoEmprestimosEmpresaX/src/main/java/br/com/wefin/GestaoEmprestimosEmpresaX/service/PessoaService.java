@@ -17,26 +17,30 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    // Método para buscar todas as pessoas
     public List<PessoaDTO> findAll() {
         return pessoaRepository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
+    // Método para buscar uma pessoa por ID
     public PessoaDTO findById(Long id) {
         return pessoaRepository.findById(id)
                 .map(this::convertToDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
     }
 
+    // Método para salvar uma pessoa
+    // Responsável também por definir o TipoIdentificador e os valores de empréstimo
     public PessoaDTO save(PessoaDTO pessoaDTO) {
-        // Validação do identificador
+        // Utiliza o padrão Strategy para validar o identificador
         IdentificadorStrategy strategy = IdentificadorFactory.createIdentificadorStrategy(pessoaDTO.getIdentificador());
         if (!strategy.validar(pessoaDTO.getIdentificador())) {
             throw new IllegalArgumentException("Identificador inválido");
         }
 
-        // Definição do TipoIdentificador e valores de empréstimo
+        // Define o TipoIdentificador e os valores de empréstimo com base na estratégia
         pessoaDTO.setTipoIdentificador(strategy.getTipo());
         pessoaDTO.setValorMinimoParcela(strategy.getValorMinimoParcela());
         pessoaDTO.setValorMaximoEmprestimo(strategy.getValorMaximoEmprestimo());
@@ -45,10 +49,12 @@ public class PessoaService {
         return convertToDTO(pessoaRepository.save(pessoa));
     }
 
+    // Método para deletar uma pessoa por ID
     public void delete(Long id) {
         pessoaRepository.deleteById(id);
     }
 
+    // Conversão de Pessoa para PessoaDTO
     private PessoaDTO convertToDTO(Pessoa pessoa) {
         if (pessoa == null) return null;
         return new PessoaDTO(
@@ -62,6 +68,7 @@ public class PessoaService {
         );
     }
 
+    // Conversão de PessoaDTO para Pessoa
     private Pessoa convertToEntity(PessoaDTO pessoaDTO) {
         if (pessoaDTO == null) return null;
         return new Pessoa(
