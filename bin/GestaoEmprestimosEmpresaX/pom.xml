@@ -14,7 +14,7 @@
 	<name>GestaoEmprestimosEmpresaX</name>
 	<description>O projeto GestaoEmprestimosEmpresaX é uma solução desenvolvida para automatizar e otimizar o processo de concessão de empréstimos da Empresa X, uma instituição financeira inovadora e em crescimento. O sistema abrange desde a criação de perfis de clientes até a gestão e pagamento de empréstimos, com foco em segurança, responsabilidade e escalabilidade.</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

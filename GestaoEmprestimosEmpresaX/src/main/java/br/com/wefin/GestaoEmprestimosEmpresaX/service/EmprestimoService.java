@@ -6,7 +6,7 @@ import br.com.wefin.GestaoEmprestimosEmpresaX.repository.EmprestimoRepository;
 import br.com.wefin.GestaoEmprestimosEmpresaX.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service

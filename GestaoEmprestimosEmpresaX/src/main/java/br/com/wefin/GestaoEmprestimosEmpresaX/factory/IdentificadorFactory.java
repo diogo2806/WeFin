@@ -1,3 +1,12 @@
+package br.com.wefin.GestaoEmprestimosEmpresaX.factory;
+
+import java.util.Date;
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.EUValidator;
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.CPFValidator;
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.CNPJValidator;
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.APValidator;
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.IdentificadorStrategy;
+
 public class IdentificadorFactory {
 
     public static IdentificadorStrategy createIdentificadorStrategy(String identificador) {
