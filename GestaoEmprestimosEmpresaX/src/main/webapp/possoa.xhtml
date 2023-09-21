@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Pessoa</title>
+</head>
+<body>
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="nome" value="Nome:" />
+            <h:inputText id="nome" value="#{pessoaBean.nome}" />
+            
+            <h:outputLabel for="identificador" value="Identificador:" />
+            <h:inputText id="identificador" value="#{pessoaBean.identificador}" />
+            
+            <h:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+            <h:inputText id="dataNascimento" value="#{pessoaBean.dataNascimento}" />
+            
+            <h:outputLabel for="tipoIdentificador" value="Tipo de Identificador:" />
+            <h:inputText id="tipoIdentificador" value="#{pessoaBean.tipoIdentificador}" />
+            
+            <h:outputLabel for="valorMinimoParcela" value="Valor Mínimo da Parcela:" />
+            <h:inputText id="valorMinimoParcela" value="#{pessoaBean.valorMinimoParcela}" />
+            
+            <h:outputLabel for="valorMaximoEmprestimo" value="Valor Máximo do Empréstimo:" />
+            <h:inputText id="valorMaximoEmprestimo" value="#{pessoaBean.valorMaximoEmprestimo}" />
+        </h:panelGrid>
+        
+        <h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
+    </h:form>
+
+</body>
+</html>
