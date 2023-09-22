@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GestaoEmprestimosEmpresaXApplication<GestaoEmprestimosEmpresaX>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.wefin.GestaoEmprestimosEmpresaX.GestaoEmprestimosEmpresaXApplication",
+            "projectName": "GestaoEmprestimosEmpresaX",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  database:
+    image: 'postgres:latest'
+
+    port: 
+      - 5432:5432
+
+    environment:
+      POSTGRES_USER: gitpod
+      POSTGRES_PASSWORD: gitpod
+      POSTGRES_DB: wefin
