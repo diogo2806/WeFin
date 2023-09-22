@@ -19,7 +19,7 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
     // Método para converter Pessoa em PessoaDTO
-    private PessoaDTO toDTO(Pessoa pessoa) {
+    public  PessoaDTO toDTO(Pessoa pessoa) {
         return new PessoaDTO(
                 pessoa.getId(),
                 pessoa.getNome(),
@@ -32,7 +32,7 @@ public class PessoaService {
     }
 
     // Método para converter PessoaDTO em Pessoa
-    private Pessoa toEntity(PessoaDTO dto) {
+    public Pessoa toEntity(PessoaDTO dto) {
         return new Pessoa(
                 dto.getId(),
                 dto.getNome(),

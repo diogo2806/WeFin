@@ -77,11 +77,12 @@ public class EmprestimoService {
     }
 
    // Método para criar um novo empréstimo
-   PessoaDTO pessoaDTO = pessoaRepository.findById(emprestimoDTO.getPessoaId())
-        .map(pessoaService::toDTO)
-        .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
+   // Método para criar um novo empréstimo
+public EmprestimoDTO create(EmprestimoDTO emprestimoDTO) {
+    PessoaDTO pessoaDTO = pessoaRepository.findById(emprestimoDTO.getPessoaId())
+            .map(pessoaService::toDTO)
+            .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
 
-   
     // Validações de negócio agora usam o DTO
     if (emprestimoDTO.getValor() > pessoaDTO.getValorMaximoEmprestimo() ||
         emprestimoDTO.getParcelas() < pessoaDTO.getValorMinimoParcela() ||
@@ -89,10 +90,11 @@ public class EmprestimoService {
         throw new IllegalArgumentException("Condições de empréstimo inválidas");
     }
 
-    Emprestimo emprestimo = toEntity(emprestimoDTO, PessoaService.toEntity(pessoaDTO));  // Supondo que você tenha um método toEntity em PessoaService
+    Emprestimo emprestimo = toEntity(emprestimoDTO, pessoaService.toEntity(pessoaDTO));  // Certifique-se de que toEntity é público em PessoaService
     emprestimo = emprestimoRepository.save(emprestimo);
     return toDTO(emprestimo);
 }
+
 
     // Método para executar o pagamento de um empréstimo
     public void pagarEmprestimo(Long id) {
