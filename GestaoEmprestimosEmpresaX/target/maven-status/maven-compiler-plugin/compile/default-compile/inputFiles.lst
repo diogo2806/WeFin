@@ -9,7 +9,9 @@
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/repository/PessoaRepository.java
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/repository/EmprestimoRepository.java
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/GestaoEmprestimosEmpresaXApplication.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/controller/EmprestimoController.java
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/dto/EmprestimoDTO.java
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/EUValidator.java
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/IdentificadorStrategy.java
 /workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/service/EmprestimoService.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/config/SecurityConfig.java
