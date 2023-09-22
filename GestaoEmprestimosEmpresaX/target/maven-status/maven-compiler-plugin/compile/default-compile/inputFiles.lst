@@ -1,0 +1,15 @@
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/dto/PessoaDTO.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/model/Emprestimo.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/model/Pessoa.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/service/PessoaService.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/APValidator.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/CNPJValidator.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/CPFValidator.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/factory/IdentificadorFactory.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/repository/PessoaRepository.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/repository/EmprestimoRepository.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/GestaoEmprestimosEmpresaXApplication.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/dto/EmprestimoDTO.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/EUValidator.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/validation/IdentificadorStrategy.java
+/workspace/WeFin/GestaoEmprestimosEmpresaX/src/main/java/br/com/wefin/GestaoEmprestimosEmpresaX/service/EmprestimoService.java
