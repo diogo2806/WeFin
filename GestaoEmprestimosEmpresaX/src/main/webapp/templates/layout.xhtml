@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+    <title><ui:insert name="title">Título Padrão</ui:insert></title>
+</head>
+<body>
+    <div id="header">
+        <ui:include src="/templates/header.xhtml" />
+    </div>
+
+    <div id="content">
+        <ui:insert name="content">Conteúdo padrão</ui:insert>
+    </div>
+
+    <div id="footer">
+        <p>Rodapé da Empresa X</p>
+    </div>
+</body>
+</html>
