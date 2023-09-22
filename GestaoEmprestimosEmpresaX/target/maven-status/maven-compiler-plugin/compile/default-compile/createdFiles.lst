@@ -2,6 +2,7 @@ br/com/wefin/GestaoEmprestimosEmpresaX/dto/EmprestimoDTO.class
 br/com/wefin/GestaoEmprestimosEmpresaX/controller/EmprestimoController.class
 br/com/wefin/GestaoEmprestimosEmpresaX/dto/PessoaDTO.class
 br/com/wefin/GestaoEmprestimosEmpresaX/validation/CNPJValidator.class
+HomeController.class
 br/com/wefin/GestaoEmprestimosEmpresaX/repository/EmprestimoRepository.class
 br/com/wefin/GestaoEmprestimosEmpresaX/validation/CPFValidator.class
 br/com/wefin/GestaoEmprestimosEmpresaX/service/PessoaService.class
