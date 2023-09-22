@@ -1,7 +1,5 @@
 package br.com.wefin.GestaoEmprestimosEmpresaX.validation;
 
-import br.com.wefin.GestaoEmprestimosEmpresaX.factory.IdentificadorFactory;
-
 public class APValidator implements IdentificadorStrategy {
 
     @Override

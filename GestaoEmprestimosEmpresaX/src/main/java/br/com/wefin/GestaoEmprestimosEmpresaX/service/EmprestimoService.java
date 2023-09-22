@@ -3,6 +3,7 @@ package br.com.wefin.GestaoEmprestimosEmpresaX.service;
 import br.com.wefin.GestaoEmprestimosEmpresaX.model.Emprestimo;
 import br.com.wefin.GestaoEmprestimosEmpresaX.model.Pessoa;
 import br.com.wefin.GestaoEmprestimosEmpresaX.dto.EmprestimoDTO;
+import br.com.wefin.GestaoEmprestimosEmpresaX.dto.PessoaDTO;
 import br.com.wefin.GestaoEmprestimosEmpresaX.repository.EmprestimoRepository;
 import br.com.wefin.GestaoEmprestimosEmpresaX.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class EmprestimoService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Autowired
+    private PessoaService pessoaService;
+
     public static EmprestimoDTO toDTO(Emprestimo emprestimo) {
         return new EmprestimoDTO(
             emprestimo.getId(),
@@ -32,6 +36,20 @@ public class EmprestimoService {
             emprestimo.getParcelas()  // Novo campo adicionado
         );
     }
+
+    
+    public static PessoaDTO toDTO(Pessoa pessoa) {
+        return new PessoaDTO(
+            pessoa.getId(),
+            pessoa.getNome(),
+            pessoa.getIdentificador(),
+            pessoa.getDataNascimento(),
+            pessoa.getTipoIdentificador(),
+            pessoa.getValorMinimoParcela(),
+            pessoa.getValorMaximoEmprestimo()
+        );
+    }
+    
     
 
     public static Emprestimo toEntity(EmprestimoDTO dto, Pessoa pessoa) {
@@ -58,23 +76,23 @@ public class EmprestimoService {
         return toDTO(emprestimo);
     }
 
-    // Método para criar um novo empréstimo
-    public EmprestimoDTO create(EmprestimoDTO emprestimoDTO) {
-        Pessoa pessoa = pessoaRepository.findById(emprestimoDTO.getPessoaId())
-                .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
-        
-        Emprestimo emprestimo = toEntity(emprestimoDTO, pessoa);
+   // Método para criar um novo empréstimo
+   PessoaDTO pessoaDTO = pessoaRepository.findById(emprestimoDTO.getPessoaId())
+        .map(pessoaService::toDTO)
+        .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
 
-        // Validações de negócio
-        if (emprestimoDTO.getValor() > pessoa.getValorMaximoEmprestimo() ||
-            emprestimoDTO.getParcelas() < pessoa.getValorMinimoParcela() ||
-            emprestimoDTO.getNumeroParcelas() > 24) {
-            throw new IllegalArgumentException("Condições de empréstimo inválidas");
-        }
-
-        emprestimo = emprestimoRepository.save(emprestimo);
-        return toDTO(emprestimo);
+   
+    // Validações de negócio agora usam o DTO
+    if (emprestimoDTO.getValor() > pessoaDTO.getValorMaximoEmprestimo() ||
+        emprestimoDTO.getParcelas() < pessoaDTO.getValorMinimoParcela() ||
+        emprestimoDTO.getNumeroParcelas() > 24) {
+        throw new IllegalArgumentException("Condições de empréstimo inválidas");
     }
+
+    Emprestimo emprestimo = toEntity(emprestimoDTO, PessoaService.toEntity(pessoaDTO));  // Supondo que você tenha um método toEntity em PessoaService
+    emprestimo = emprestimoRepository.save(emprestimo);
+    return toDTO(emprestimo);
+}
 
     // Método para executar o pagamento de um empréstimo
     public void pagarEmprestimo(Long id) {
