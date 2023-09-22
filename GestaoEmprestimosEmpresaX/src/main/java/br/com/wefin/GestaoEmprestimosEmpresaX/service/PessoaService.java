@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+@Service  
 public class PessoaService {
 
     @Autowired
