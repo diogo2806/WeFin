@@ -80,7 +80,23 @@ public class PessoaService {
         pessoa.setTipoIdentificador(strategy.getTipo());
         pessoa.setValorMinMensal(BigDecimal.valueOf(strategy.getValorMinimoParcela())); // Convertendo para BigDecimal
         pessoa.setValorMaxEmprestimo(BigDecimal.valueOf(strategy.getValorMaximoEmprestimo())); // Convertendo para
-                                                                                               // BigDecimal
+                                                                                        
+
+
+        // Verificar se o empréstimo ultrapassa o limite máximo
+        double valorMaxEmprestimo = pessoa.getValorMaxEmprestimo().doubleValue();
+        if (valorMaxEmprestimo > strategy.getValorMaximoEmprestimo()) {
+            throw new IllegalArgumentException(
+                    "O valor do empréstimo ultrapassa o limite máximo para este tipo de identificador");
+        }
+
+        // Verificar se o valor das parcelas é maior ou igual ao valor mínimo permitido
+        double valorMinParcela = pessoa.getValorMinMensal().doubleValue();
+
+        if (valorMinParcela < strategy.getValorMinimoParcela()) {
+            throw new IllegalArgumentException(
+                    "O valor das parcelas é inferior ao valor mínimo permitido para este tipo de identificador");
+        }
 
         pessoa = pessoaRepository.save(pessoa);
         return toDTO(pessoa);
