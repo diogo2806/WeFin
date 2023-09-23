@@ -4,8 +4,11 @@ import br.com.wefin.GestaoEmprestimosEmpresaX.model.Emprestimo;
 import br.com.wefin.GestaoEmprestimosEmpresaX.model.Pessoa;
 import br.com.wefin.GestaoEmprestimosEmpresaX.dto.EmprestimoDTO;
 import br.com.wefin.GestaoEmprestimosEmpresaX.dto.PessoaDTO;
+import br.com.wefin.GestaoEmprestimosEmpresaX.factory.IdentificadorFactory;
 import br.com.wefin.GestaoEmprestimosEmpresaX.repository.EmprestimoRepository;
 import br.com.wefin.GestaoEmprestimosEmpresaX.repository.PessoaRepository;
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.IdentificadorStrategy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
@@ -56,6 +59,23 @@ public class EmprestimoService {
         if (emprestimoDTO.getValorEmprestimo().compareTo(pessoaDTO.getValorMaxEmprestimo()) > 0 ||
                 emprestimoDTO.getNumeroParcelas() > 24) {
             throw new IllegalArgumentException("Condições de empréstimo inválidas");
+        }
+
+        // Utiliza o padrão Strategy para validar o identificador
+        IdentificadorStrategy strategy = IdentificadorFactory.createIdentificadorStrategyBySigla(pessoaDTO.getTipoIdentificador());
+
+        // Verificar se o empréstimo ultrapassa o limite máximo
+        double valorMaxEmprestimo = pessoaDTO.getValorMaxEmprestimo().doubleValue();
+        if (valorMaxEmprestimo > strategy.getValorMaximoEmprestimo()) {
+            throw new IllegalArgumentException(
+                    "O valor do empréstimo ultrapassa o limite máximo para este tipo de identificador");
+        }
+
+        // Verificar se o valor das parcelas é maior ou igual ao valor mínimo permitido
+        double valorMinParcela = pessoaDTO.getValorMinMensal().doubleValue();
+        if (valorMinParcela < strategy.getValorMinimoParcela()) {
+            throw new IllegalArgumentException(
+                    "O valor das parcelas é inferior ao valor mínimo permitido para este tipo de identificador");
         }
 
         Emprestimo emprestimo = toEntity(emprestimoDTO, pessoaService.toEntity(pessoaDTO));

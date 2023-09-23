@@ -9,17 +9,42 @@ import br.com.wefin.GestaoEmprestimosEmpresaX.validation.IdentificadorStrategy;
 public class IdentificadorFactory {
 
     public static IdentificadorStrategy createIdentificadorStrategy(String identificador) {
+        IdentificadorStrategy strategy = null;
+
         switch (identificador.length()) {
             case 11:
-                return new CPFValidator(); // Implementa IdentificadorStrategy
+                strategy = new CPFValidator();
+                break;
             case 14:
-                return new CNPJValidator(); // Implementa IdentificadorStrategy
+                strategy = new CNPJValidator();
+                break;
             case 8:
-                return new EUValidator(); // Implementa IdentificadorStrategy
+                strategy = new EUValidator();
+                break;
             case 10:
-                return new APValidator(); // Implementa IdentificadorStrategy
+                strategy = new APValidator();
+                break;
+        }
+
+        if (strategy != null) {
+            return strategy;
+        } else {
+            throw new IllegalArgumentException("Tipo de identificador desconhecido "+identificador);
+        }
+    }
+
+    public static IdentificadorStrategy createIdentificadorStrategyBySigla(String sigla) {
+        switch (sigla) {
+            case "PF":
+                return new CPFValidator();
+            case "PJ":
+                return new CNPJValidator();
+            case "EU":
+                return new EUValidator();
+            case "AP":
+                return new APValidator();
             default:
-                throw new IllegalArgumentException("Tipo de identificador desconhecido");
+                throw new IllegalArgumentException("Sigla desconhecida "+sigla);
         }
     }
 }
