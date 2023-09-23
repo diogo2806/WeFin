@@ -1,5 +1,6 @@
 package br.com.wefin.GestaoEmprestimosEmpresaX.service;
 
+import br.com.wefin.GestaoEmprestimosEmpresaX.controller.PessoaController;
 import br.com.wefin.GestaoEmprestimosEmpresaX.dto.PessoaDTO;
 import br.com.wefin.GestaoEmprestimosEmpresaX.model.Pessoa;
 import br.com.wefin.GestaoEmprestimosEmpresaX.repository.PessoaRepository;
@@ -7,7 +8,8 @@ import br.com.wefin.GestaoEmprestimosEmpresaX.factory.IdentificadorFactory;
 import br.com.wefin.GestaoEmprestimosEmpresaX.validation.IdentificadorStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,6 +17,9 @@ import java.util.stream.Collectors;
 
 @Service   
 public class PessoaService {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(PessoaService.class);
 
     @Autowired
     private PessoaRepository pessoaRepository;
@@ -54,6 +59,8 @@ public class PessoaService {
 
     // Método para buscar uma pessoa por ID
     public PessoaDTO findById(Long id) {
+
+        logger.warn("Iniciando a findById.");
         Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
         return toDTO(pessoa);

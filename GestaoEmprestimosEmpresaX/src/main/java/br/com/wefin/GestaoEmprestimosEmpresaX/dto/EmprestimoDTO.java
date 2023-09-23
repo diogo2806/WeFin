@@ -11,10 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmprestimoDTO {
-    private int id;
+    private Long id;
     private BigDecimal valorEmprestimo;
     private Integer numeroParcelas;
     private String statusPagamento;
     private Date dataCriacao;
-    private int pessoaId; // ID da Pessoa em vez do objeto Pessoa para simplificar
+    private Long pessoaId; // ID da Pessoa em vez do objeto Pessoa para simplificar
 }

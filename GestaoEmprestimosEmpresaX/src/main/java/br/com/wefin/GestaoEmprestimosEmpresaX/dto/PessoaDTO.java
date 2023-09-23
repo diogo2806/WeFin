@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PessoaDTO {
-    private int id;
+    private Long id;
     private String nome;
     private String identificador;
     private Date dataNascimento;

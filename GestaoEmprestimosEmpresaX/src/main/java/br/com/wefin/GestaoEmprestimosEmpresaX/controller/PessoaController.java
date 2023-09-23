@@ -42,8 +42,6 @@ public class PessoaController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 
-    
-
     @GetMapping("/listar")
     public List<PessoaDTO> listarPessoas() {
         logger.warn("Iniciando a listagem de pessoas.");

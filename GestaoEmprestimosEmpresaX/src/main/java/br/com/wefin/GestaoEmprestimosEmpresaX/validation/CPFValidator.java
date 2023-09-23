@@ -1,11 +1,15 @@
 package br.com.wefin.GestaoEmprestimosEmpresaX.validation;
 
+import br.com.wefin.GestaoEmprestimosEmpresaX.validation.ValidaCPF;
+
 public class CPFValidator implements IdentificadorStrategy {
 
     @Override
     public boolean validar(String identificador) {
         // Implementar lógica para validar CPF
-        return true;
+        ValidaCPF validaCPF = new ValidaCPF();
+        boolean validar = validaCPF.isCPF(identificador);
+        return validar;
     }
 
     @Override
