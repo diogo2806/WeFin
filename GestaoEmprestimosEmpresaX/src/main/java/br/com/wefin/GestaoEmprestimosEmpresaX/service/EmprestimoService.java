@@ -12,8 +12,6 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-
 @Service  
 public class EmprestimoService {
 
