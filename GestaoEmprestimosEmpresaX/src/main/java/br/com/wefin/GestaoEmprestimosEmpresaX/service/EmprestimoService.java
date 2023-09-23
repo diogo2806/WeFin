@@ -56,23 +56,25 @@ public class EmprestimoService {
                 .map(pessoaService::toDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
 
-        if (emprestimoDTO.getValorEmprestimo().compareTo(pessoaDTO.getValorMaxEmprestimo()) > 0 ||
-                emprestimoDTO.getNumeroParcelas() > 24) {
-            throw new IllegalArgumentException("Condições de empréstimo inválidas");
-        }
+        
 
         // Utiliza o padrão Strategy para validar o identificador
         IdentificadorStrategy strategy = IdentificadorFactory.createIdentificadorStrategyBySigla(pessoaDTO.getTipoIdentificador());
 
+        if (emprestimoDTO.getNumeroParcelas() > 24) {
+            throw new IllegalArgumentException("Condições de empréstimo inválidas");
+        }
+
+
         // Verificar se o empréstimo ultrapassa o limite máximo
-        double valorMaxEmprestimo = pessoaDTO.getValorMaxEmprestimo().doubleValue();
+        double valorMaxEmprestimo = emprestimoDTO.getValorEmprestimo().doubleValue();
         if (valorMaxEmprestimo > strategy.getValorMaximoEmprestimo()) {
             throw new IllegalArgumentException(
                     "O valor do empréstimo ultrapassa o limite máximo para este tipo de identificador");
         }
 
         // Verificar se o valor das parcelas é maior ou igual ao valor mínimo permitido
-        double valorMinParcela = pessoaDTO.getValorMinMensal().doubleValue();
+        double valorMinParcela = emprestimoDTO.getValorEmprestimo().doubleValue();
         if (valorMinParcela < strategy.getValorMinimoParcela()) {
             throw new IllegalArgumentException(
                     "O valor das parcelas é inferior ao valor mínimo permitido para este tipo de identificador");
