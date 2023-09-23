@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/emprestimos")
+@RequestMapping("/api/emprestimos")
 public class EmprestimoController {
 
     @Autowired
@@ -25,8 +25,8 @@ public class EmprestimoController {
     }
 
     @PostMapping("/criar")
-    public EmprestimoDTO criarEmprestimo(@RequestBody EmprestimoDTO emprestimoDTO) {
-        return emprestimoService.create(emprestimoDTO);
+    public void criarEmprestimo(@RequestBody EmprestimoDTO emprestimoDTO) {
+        emprestimoService.create(emprestimoDTO);
     }
 
     @PutMapping("/pagar/{id}")
@@ -39,3 +39,4 @@ public class EmprestimoController {
         emprestimoService.delete(id);
     }
 }
+

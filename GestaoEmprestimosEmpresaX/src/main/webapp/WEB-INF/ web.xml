@@ -11,6 +11,17 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern> <!-- Mapeia todas as solicitações para o DispatcherServlet -->
+    </servlet-mapping>
+
     <!-- Adicione esta parte para definir o arquivo de boas-vindas -->
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
