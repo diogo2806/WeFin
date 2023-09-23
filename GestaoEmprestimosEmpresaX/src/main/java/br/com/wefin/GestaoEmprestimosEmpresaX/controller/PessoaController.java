@@ -43,7 +43,7 @@ public class PessoaController {
         List<PessoaDTO> pessoas = pessoaService.findAll();
         model.addAttribute("pessoas", pessoas);
         logger.info("Listagem de pessoas concluída.");
-        return "listarPessoas";
+        return "pessoa/listarPessoas";
     }
 
     @PostMapping("/criarPessoa")

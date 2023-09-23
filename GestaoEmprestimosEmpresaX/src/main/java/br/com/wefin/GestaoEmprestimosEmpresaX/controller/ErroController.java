@@ -15,8 +15,6 @@ public class ErroController implements ErrorController {
         return "error"; // Certifique-se de que você tenha uma página "error.html" em seus recursos (resources/templates).
     }
 
-    @Override
-    public String getErrorPath() {
-        return "/error";
-    }
+
+
 }
