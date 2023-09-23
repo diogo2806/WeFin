@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Início</title>
+    <!-- Adicione a referência ao Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Adicione a referência ao seu arquivo CSS personalizado -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body onload="onload()">
+    <header class="header">
+        <!-- Conteúdo do cabeçalho -->
+        <h1>Header da Empresa X</h1>
+        <!-- Inclua aqui qualquer conteúdo que você deseja no cabeçalho -->
+    </header>
+
+    <nav>
+        <!-- Menu de navegação -->
+        <ul>
+            <li><a href="../pessoa/criarPessoa.html">Criar Pessoas</a></li>
+            <li><a href="../pessoa/listarPessoas.html">Listar Pessoas</a></li>
+            <li><a href="../emprestimo/criarEmprestimo.html">Criar Empréstimos</a></li>
+            <li><a href="../emprestimo/listarEmprestimos.html">Listar Empréstimos</a></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- Conteúdo principal -->
+        <h2>Bem-vindo ao Sistema de Empréstimos da Empresa X</h2>
+        <!-- Inclua aqui o conteúdo principal da página -->
+        <div id="app">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Identificador</th>
+                        <th>Data de Nascimento</th>
+                        <th>Tipo de Identificador</th>
+                        <th>Valor Mínimo Mensal</th>
+                        <th>Valor Máximo de Empréstimo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in pessoa">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.nome }}</td>
+                        <td>{{ item.identificador }}</td>
+                        <td>{{ item.dataNascimento }}</td>
+                        <td>{{ item.tipoIdentificador }}</td>
+                        <td>{{ item.valorMinMensal }}</td>
+                        <td>{{ item.valorMaxEmprestimo }}</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </main>
+    <footer>
+        <!-- Rodapé da página -->
+        <p>&copy; 2023 Empresa X. Todos os direitos reservados.</p>
+        <!-- Inclua aqui qualquer conteúdo que você deseja no rodapé -->
+    </footer>
+
+    <script>
+        // Função que será executada quando a página estiver totalmente carregada
+        function onload() {
+            // Coloque seu código aqui
+            new Vue({
+                el: '#app',
+                data() {
+                    return {
+                        pessoa: []
+                    }
+                },
+                mounted() {
+                    axios
+                        .get('http://localhost:8080/api/pessoas/listar')
+                        .then(response => {
+                            this.pessoa = response.data;
+                             console.log(JSON.stringify(this.pessoa)); // Exibe os dados em formato JSON
+                        })
+                        .catch(error => console.error(error)); // Lidar com erros
+                }
+            });
+            Vue.config.productionTip = false; // Desativa o aviso de modo de desenvolvimento
+
+        }
+
+        // Adicione um ouvinte de evento para chamar a função onLoad quando a página estiver carregada
+        document.addEventListener("DOMContentLoaded", onload);
+    
+    </script>
+    <!-- Adicione a referência ao Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Adicione a referência ao axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Adicione o link para o seu arquivo JavaScript personalizado -->
+    <script src="../../js/main.js"></script>
+
+    <!-- Adicione a referência ao jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Em seguida, adicione a referência ao Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

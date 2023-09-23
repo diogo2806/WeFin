@@ -3,6 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import br.com.wefin.GestaoEmprestimosEmpresaX.dto.PessoaDTO;
@@ -10,7 +11,10 @@ import br.com.wefin.GestaoEmprestimosEmpresaX.service.PessoaService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/pessoas")
@@ -21,12 +25,24 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // Defina o status HTTP adequado
+    public Map<String, String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", ex.getMessage());
+        return errorResponse;
+    }
+
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
+
+    
 
     @GetMapping("/listar")
     public List<PessoaDTO> listarPessoas() {

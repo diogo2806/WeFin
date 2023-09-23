@@ -1,0 +1,116 @@
+/* Reset de estilos para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Garante que a página tenha pelo menos a altura da janela de visualização */
+}
+
+/* Estilos do Header */
+.header {
+    background-color: #234986;
+    border-radius: 0px;
+    padding: 0.0em 0.5em;
+    /* Reduzir o padding à esquerda e à direita */
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* margin-bottom: 1em; */
+    align-self: center;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* Adicione esta linha para estender o header por toda a largura da tela */
+}
+
+
+.header .title-banner h1 {
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 2);
+    /* margin-bottom: 0.3em; */
+    line-height: 1.2;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+/* Estilos para o conteúdo principal (main) */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    /* Cresce para ocupar o espaço disponível */
+    width: 100%;
+    /* Adicione esta linha para estender o main por toda a largura da tela */
+}
+
+/* Estilos do Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #234986;
+    /* Cor semelhante à do header */
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    /* Adiciona uma sombra suave na parte inferior */
+}
+
+/* Estilos para links */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    /* Efeito de transição suave para a cor do link */
+}
+
+a:hover {
+    color: #0056b3;
+    /* Cor do link ao passar o mouse */
+    text-decoration: underline;
+}
+
+/* Estilos para botões */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Efeito de transição suave */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
