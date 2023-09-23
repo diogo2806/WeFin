@@ -1,21 +1,41 @@
 package br.com.wefin.GestaoEmprestimosEmpresaX.controller;
 
+import br.com.wefin.GestaoEmprestimosEmpresaX.dto.EmprestimoDTO;
 import br.com.wefin.GestaoEmprestimosEmpresaX.service.EmprestimoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/emprestimos")
+@RequestMapping("/emprestimos")
 public class EmprestimoController {
 
     @Autowired
     private EmprestimoService emprestimoService;
 
-    @RequestMapping("/listar")
-    public String listarEmprestimos() {
-        // Sua lógica aqui, possivelmente chamando métodos de emprestimoService
-        return "Lista de empréstimos";
+    @GetMapping("/listar")
+    public List<EmprestimoDTO> listarEmprestimos() {
+        return emprestimoService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public EmprestimoDTO getEmprestimo(@PathVariable Long id) {
+        return emprestimoService.findById(id);
+    }
+
+    @PostMapping("/criar")
+    public EmprestimoDTO criarEmprestimo(@RequestBody EmprestimoDTO emprestimoDTO) {
+        return emprestimoService.create(emprestimoDTO);
+    }
+
+    @PutMapping("/pagar/{id}")
+    public void pagarEmprestimo(@PathVariable Long id) {
+        emprestimoService.pagarEmprestimo(id);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    public void deletarEmprestimo(@PathVariable Long id) {
+        emprestimoService.delete(id);
     }
 }
-

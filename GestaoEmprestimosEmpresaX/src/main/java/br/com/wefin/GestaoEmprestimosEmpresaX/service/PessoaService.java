@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,15 +23,15 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
     // Método para converter Pessoa em PessoaDTO
-    public  PessoaDTO toDTO(Pessoa pessoa) {
+    public PessoaDTO toDTO(Pessoa pessoa) {
         return new PessoaDTO(
                 pessoa.getId(),
                 pessoa.getNome(),
                 pessoa.getIdentificador(),
                 pessoa.getDataNascimento(),
                 pessoa.getTipoIdentificador(),
-                pessoa.getValorMinimoParcela(),
-                pessoa.getValorMaximoEmprestimo()
+                pessoa.getValorMinMensal(),
+                pessoa.getValorMaxEmprestimo()
         );
     }
 
@@ -41,8 +43,8 @@ public class PessoaService {
                 dto.getIdentificador(),
                 dto.getDataNascimento(),
                 dto.getTipoIdentificador(),
-                dto.getValorMinimoParcela(),
-                dto.getValorMaximoEmprestimo()
+                dto.getValorMinMensal(), // Já é BigDecimal
+                dto.getValorMaxEmprestimo() // Já é BigDecimal
         );
     }
 
@@ -72,8 +74,9 @@ public class PessoaService {
 
         // Define o TipoIdentificador e os valores de empréstimo com base na estratégia
         pessoa.setTipoIdentificador(strategy.getTipo());
-        pessoa.setValorMinimoParcela(strategy.getValorMinimoParcela());
-        pessoa.setValorMaximoEmprestimo(strategy.getValorMaximoEmprestimo());
+        pessoa.setValorMinMensal(BigDecimal.valueOf(strategy.getValorMinimoParcela())); // Convertendo para BigDecimal
+        pessoa.setValorMaxEmprestimo(BigDecimal.valueOf(strategy.getValorMaximoEmprestimo())); // Convertendo para
+                                                                                               // BigDecimal
 
         pessoa = pessoaRepository.save(pessoa);
         return toDTO(pessoa);

@@ -4,31 +4,33 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
-@Data // Gera getters e setters automaticamente
-@AllArgsConstructor // Gera um construtor com todos os campos
-@NoArgsConstructor // Gera um construtor vazio
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Emprestimo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Double valor;
-    private Integer numeroParcelas;
+    private int id;
+
+    @Column(nullable = false, precision = 18, scale = 4)
+    private BigDecimal valorEmprestimo;
+
+    @Column(nullable = false)
+    private int numeroParcelas;
+
+    @Column(nullable = false, length = 50)
     private String statusPagamento;
+
+    @Column(nullable = false)
     private Date dataCriacao;
-    private Integer parcelas;
 
     @ManyToOne
+    @JoinColumn(name = "id_pessoa", nullable = false)
     private Pessoa pessoa;
-
-    // A lógica de negócios relacionada ao empréstimo será movida para uma classe de serviço
-    // para seguir o princípio de Single Responsibility.
 }
