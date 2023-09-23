@@ -10,11 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @Service   
 public class PessoaService {
