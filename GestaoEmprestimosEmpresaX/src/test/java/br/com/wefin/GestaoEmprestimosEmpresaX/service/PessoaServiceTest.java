@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class PessoaServiceTest {
@@ -54,22 +55,23 @@ public class PessoaServiceTest {
         verify(pessoaRepository, times(1)).findById(1L);
     }
 
-    @Test
-    public void testSave() {
-        PessoaDTO dto = new PessoaDTO();
-        dto.setId(1L);
-        dto.setIdentificador("IdentificadorValido");  // Adicionado para evitar NullPointerException
+   @Test
+public void testSave() {
+    PessoaDTO dto = new PessoaDTO();
+    dto.setId(1L);
+    dto.setIdentificador("05827748706");  // Um identificador com 11 caracteres, válido para CPF
 
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId(1L);
+    Pessoa pessoa = new Pessoa();
+    pessoa.setId(1L);
 
-        when(pessoaRepository.save(any(Pessoa.class))).thenReturn(pessoa);
+    when(pessoaRepository.save(any(Pessoa.class))).thenReturn(pessoa);
 
-        PessoaDTO result = pessoaService.save(dto);
+    PessoaDTO result = pessoaService.save(dto);
 
-        assertEquals(1L, result.getId());
-        verify(pessoaRepository, times(1)).save(any(Pessoa.class));
-    }
+    assertEquals(1L, result.getId());
+    verify(pessoaRepository, times(1)).save(any(Pessoa.class));
+}
+
 
     @Test
     public void testDelete() {

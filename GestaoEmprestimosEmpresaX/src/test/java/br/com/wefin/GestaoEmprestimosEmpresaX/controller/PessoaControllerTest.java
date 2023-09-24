@@ -3,9 +3,9 @@ package br.com.wefin.GestaoEmprestimosEmpresaX.controller;
 import br.com.wefin.GestaoEmprestimosEmpresaX.dto.PessoaDTO;
 import br.com.wefin.GestaoEmprestimosEmpresaX.service.PessoaService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -23,10 +23,10 @@ public class PessoaControllerTest {
 
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private PessoaService pessoaService;
 
-    @InjectMocks
+    @Autowired
     private PessoaController pessoaController;
 
     @Test
