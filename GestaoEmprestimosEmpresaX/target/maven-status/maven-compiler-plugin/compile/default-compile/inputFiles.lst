@@ -12,10 +12,8 @@ D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wef
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\config\SecurityConfig.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\validation\ValidaCNPJ.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\dto\PessoaDTO.java
-D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\controller\HomeController.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\validation\ValidaCPF.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\validation\IdentificadorStrategy.java
-D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\controller\ErroController.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\service\EmprestimoService.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\validation\EUValidator.java
 D:\Diogo\Projetos\WeFin\WeFin\GestaoEmprestimosEmpresaX\src\main\java\br\com\wefin\GestaoEmprestimosEmpresaX\factory\IdentificadorFactory.java
