@@ -16,25 +16,27 @@ import java.util.List;
 import java.util.Map;
 
 
-@RestController
-@RequestMapping("/api/pessoas")
+@RestController  // Indica que esta classe é um controlador REST
+@RequestMapping("/api/pessoas")  // Define o caminho base para os endpoints deste controlador
+
 public class PessoaController {
 
     private static final Logger logger = LoggerFactory.getLogger(PessoaController.class);
 
-    @Autowired
+    @Autowired // Injeta o serviço de pessoas
     private PessoaService pessoaService;
 
 
+    // Manipula exceções do tipo IllegalArgumentException
     @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST) // Defina o status HTTP adequado
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // Define o status HTTP para Bad Request
     public Map<String, String> handleIllegalArgumentException(IllegalArgumentException ex) {
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("error", ex.getMessage());
         return errorResponse;
     }
 
-
+    // Configura o WebDataBinder para tratar datas
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -42,6 +44,7 @@ public class PessoaController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 
+    // Endpoint para listar todas as pessoas
     @GetMapping("/listar")
     public List<PessoaDTO> listarPessoas() {
         logger.warn("Iniciando a listagem de pessoas.");
@@ -50,6 +53,7 @@ public class PessoaController {
         return pessoas;
     }
 
+    // Endpoint para criar uma nova pesso
     @PostMapping("/criar")
     public void criarPessoa(@RequestBody PessoaDTO pessoaDTO) {
         logger.info("Iniciando o processo de criação de uma nova pessoa. " + pessoaDTO.toString());
@@ -57,6 +61,7 @@ public class PessoaController {
         logger.info("Pessoa criada com sucesso.");
     }
 
+    // Endpoint para buscar uma pessoa pelo ID
     @GetMapping("/buscar/{id}")
     public PessoaDTO buscarPessoa(@PathVariable Long id) {
         logger.info("Buscando pessoa com ID: " + id);
@@ -64,7 +69,8 @@ public class PessoaController {
         logger.info("Pessoa encontrada.");
         return pessoa;
     }
-
+    
+    // Endpoint para deletar uma pessoa pelo ID
     @DeleteMapping("/deletar/{id}")
     public void deletarPessoa(@PathVariable Long id) {
         logger.info("Deletando pessoa com ID: " + id);
