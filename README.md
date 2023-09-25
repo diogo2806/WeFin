@@ -23,40 +23,40 @@ O projeto **WeFin - Gestão de Empréstimos da Empresa X** é uma aplicação Ja
 GestaoEmprestimosEmpresaXApplication.java - Classe principal da aplicação.
 
 Configurações
-SecurityConfig.java - Configurações de segurança.
-WebMvcConfig.java - Configurações do MVC.
+- SecurityConfig.java - Configurações de segurança.
+- WebMvcConfig.java - Configurações do MVC.
 
 Controladores
-EmprestimoController.java - Controlador para empréstimos.
-PessoaController.java - Controlador para pessoas.
+- EmprestimoController.java - Controlador para empréstimos.
+- PessoaController.java - Controlador para pessoas.
 
 DTOs
-EmprestimoDTO.java - DTO para empréstimos.
-PessoaDTO.java - DTO para pessoas.
+- EmprestimoDTO.java - DTO para empréstimos.
+- PessoaDTO.java - DTO para pessoas.
 
 Modelos
-Emprestimo.java - Modelo para empréstimos.
-Pessoa.java - Modelo para pessoas.
+- Emprestimo.java - Modelo para empréstimos.
+- Pessoa.java - Modelo para pessoas.
 
 Repositórios
-EmprestimoRepository.java - Repositório para empréstimos.
-PessoaRepository.java - Repositório para pessoas.
+- EmprestimoRepository.java - Repositório para empréstimos.
+- PessoaRepository.java - Repositório para pessoas.
 
 Serviços
-EmprestimoService.java - Serviço para empréstimos.
-PessoaService.java - Serviço para pessoas.
+- EmprestimoService.java - Serviço para empréstimos.
+- PessoaService.java - Serviço para pessoas.
 
 Factory
-IdentificadorFactory.java - Fábrica para criar estratégias de validação de identificadores.
+- IdentificadorFactory.java - Fábrica para criar estratégias de validação de identificadores.
 
 Validações
-APValidator.java - Validador para AP.
-CNPJValidator.java - Validador para CNPJ.
-CPFValidator.java - Validador para CPF.
-EUValidator.java - Validador para EU.
-IdentificadorStrategy.java - Estratégia para identificadores.
-ValidaCNPJ.java - Classe para validar CNPJ.
-ValidaCPF.java - Classe para validar CPF.
+- APValidator.java - Validador para AP.
+- CNPJValidator.java - Validador para CNPJ.
+- CPFValidator.java - Validador para CPF.
+- EUValidator.java - Validador para EU.
+- IdentificadorStrategy.java - Estratégia para identificadores.
+- ValidaCNPJ.java - Classe para validar CNPJ.
+- ValidaCPF.java - Classe para validar CPF.
 
 ---
 
